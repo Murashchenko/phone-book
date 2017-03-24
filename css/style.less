@@ -3,20 +3,25 @@
 @gray: #A9A9A9;
 
 html {
+  display: table;
+  width: 100%;
   height: 100%;
 }
 
 body {
+  display: table;
   .bxz(border-box);
+  width: 100%;
   height: 100%;
   min-width: 300px;
   padding: 4%;
+  border-bottom: 1px solid #ffffff;
   font: 1em 'Century Gothic', Futura, Arial, sans-serif;
 }
 
 .main {
   .bxz(border-box);
-  height: 100%;
+  min-height: 100%;
   max-width: 600px;
 
   border: 3px solid @gray;
@@ -70,6 +75,47 @@ body {
       .lg( @args );
     }
   }
+}
+
+.contacts {
+  // .bxz(border-box);
+  border-collapse: collapse;
+  width: 100%;
+  &__headers th:not(:last-child) {
+    padding: .25em .65em;
+    font-size: 1.2em;
+    background: darken(@gray, 40);
+    color: #fff;
+    width: 50%;
+    border: 2px solid darken(@gray, 40);
+  }
+
+  &__item td{
+    border: 2px solid darken(@gray, 40);
+    padding: .25em .65em;
+
+    &:last-child {
+      border: none;
 
 
+
+      button {
+        text-indent: -10000px;
+        width: 1.5em;
+        height: 1.5em;
+        border: 1px solid darken(@gray, 40);
+        padding: 0;
+
+        background: url('../imgs/trash.png') no-repeat 50% 50%;
+        background-size: 80%;
+        outline: none;
+
+
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }

@@ -46,7 +46,13 @@ phoneBookApp.controller("phoneBookController", function ($scope) {
       if ( !confirm("Вы уверены что хотите удалить контакт?") ) return;
       delete regNames[item.name];
       delete regNumbers[item.number];
-      var i = item.$$hashKey.slice(6);
-      $scope.list.items.splice(i, 1);
+
+      for (var i = 0; i < $scope.list.items.length; i++) {
+        if (item != $scope.list.items[i]) continue;
+
+        $scope.list.items.splice(i, 1);
+        return;
+      }
+
     }
 });
