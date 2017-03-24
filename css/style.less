@@ -1,23 +1,25 @@
 @import "mixins.less";
 
+@gray: #A9A9A9;
+
 html {
   height: 100%;
 }
 
 body {
-  .box-sizing(border-box);
+  .bxz(border-box);
   height: 100%;
-  padding: 4%;
   min-width: 300px;
+  padding: 4%;
   font: 1em 'Century Gothic', Futura, Arial, sans-serif;
 }
 
 .main {
-  .box-sizing(border-box);
+  .bxz(border-box);
   height: 100%;
   max-width: 600px;
-  border: 3px solid #A9A9A9;
 
+  border: 3px solid @gray;
   margin: 0 auto;
   padding: 4%;
 
@@ -28,9 +30,46 @@ body {
 .header {
   border-bottom: 4px solid #800000;
   padding-bottom: 0.3em;
-
   margin-top: 0;
 
   text-align: center;
+
+}
+
+.add-contact {
+  padding: 4%;
+  text-align: center;
+
+  &__item {
+    .bxz(border-box);
+    display: block;
+    width: 100%;
+    max-width: 300px;
+
+    border: 2px solid @gray;
+    padding: 0.3em;
+    margin: 0 auto 0.5em;
+
+    border-radius: 4px;
+  }
+
+  &__btn {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    @args: #ffffff, #dddddd;
+    .lg( @args );
+    box-shadow: 0 1px 3px #aaa;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    outline: none;
+    border: 1px solid @gray;
+
+    &:active {
+      @args: #dddddd, #ffffff;
+      .lg( @args );
+    }
+  }
+
 
 }

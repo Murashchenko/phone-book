@@ -15,9 +15,9 @@
   <main class="main">
     <h1 class="header"> Телефонная книга </h1>
     <form class="add-contact">
-      <input class="add-contact__name" ng-model="pName" placeholder = "Имя" />
-      <input class="add-contact__number" ng-model="pNumber" placeholder="Номер" />
-      <button class="add-contact__btn" type="button" ng-click="addContact(pName, pNumber)">Добавить</button>
+      <input class="add-contact__item" ng-model="pName" placeholder = "Имя" />
+      <input class="add-contact__item" ng-model="pNumber" placeholder="Номер" />
+      <button class="add-contact__btn" type="button" ng-click="addContact(pName, pNumber)">Добавить контакт</button>
     </form>
     <table class="contacts">
       <tr class="contacts__headers">

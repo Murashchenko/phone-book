@@ -4,14 +4,14 @@
   text-transform: @a;
 }
 
-.reset-btn-style() {
-  background: none;
-  border: none;
-  outline: none;
-}
-
-.box-sizing(@a) {
+.bxz(@a) {
   -webkit-box-sizing: @a;
   -moz-box-sizing: @a;
   box-sizing: @a;
+}
+
+.lg(@grad) {
+  background-image: -webkit-linear-gradient(@grad);
+  background-image: -o-linear-gradient(@grad);
+  background-image: linear-gradient(@grad);
 }
