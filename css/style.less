@@ -1,9 +1,9 @@
 @import "mixins.less";
 
 @gray: #A9A9A9;
+@gray2: #6b6b6b;
 
 html {
-  display: table;
   width: 100%;
   height: 100%;
 }
@@ -23,6 +23,7 @@ body {
   .bxz(border-box);
   min-height: 100%;
   max-width: 600px;
+  min-width: 300px;
 
   border: 3px solid @gray;
   margin: 0 auto;
@@ -78,44 +79,63 @@ body {
 }
 
 .contacts {
-  // .bxz(border-box);
   border-collapse: collapse;
   width: 100%;
-  &__headers th:not(:last-child) {
-    padding: .25em .65em;
-    font-size: 1.2em;
-    background: darken(@gray, 40);
-    color: #fff;
-    width: 50%;
-    border: 2px solid darken(@gray, 40);
+
+  &__headers {
+    th {
+      width: 40%;
+      border: 2px solid @gray2;
+      padding: .25em .65em;
+      font-size: 1.2em;
+      background: @gray2;
+      color: #fff;
+    }
+
+    th:last-child {
+      background: @gray2 url('../imgs/3.png') no-repeat 50% 50%;
+      background-size: contain;
+      padding: 0;
+      width: auto;
+      text-indent: -10000px;
+    }
   }
 
   &__item td{
-    border: 2px solid darken(@gray, 40);
+    border: 2px solid @gray2;
     padding: .25em .65em;
 
     &:last-child {
-      border: none;
+      padding: 0.4em;
+      text-align: center;
+    }
+  }
+
+  &__btn {
+    display: inline-block;
+    text-indent: -10000px;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid @gray2;
+    padding: 0;
 
 
+    background: url('../imgs/trash.png') no-repeat 50% 50%;
+    background-size: 75%;
+    outline: none;
+    border-radius: 50%;
 
-      button {
-        text-indent: -10000px;
-        width: 1.5em;
-        height: 1.5em;
-        border: 1px solid darken(@gray, 40);
-        padding: 0;
+    &-wrapper {
+      min-width: 65px;
+    }
 
-        background: url('../imgs/trash.png') no-repeat 50% 50%;
-        background-size: 80%;
-        outline: none;
+    &._edit {
+      margin: 2px 4px;
+      background-image: url('../imgs/pencil.png');
+    }
 
-
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
+    &:hover {
+      cursor: pointer;
     }
   }
 }
