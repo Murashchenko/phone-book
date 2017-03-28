@@ -1,18 +1,15 @@
-var model = {
-    items: [
-      { name : "Вася" , number : "0660994545" }
-    ]
-};
 var phoneBookApp = angular.module("phoneBookApp", []);
 phoneBookApp.controller("phoneBookController", function ($scope) {
-    $scope.list = model;
+    $scope.listContacts = [
+          { name : "Тех. Поддержка" , number : "0660994545" }
+    ];
 
     var regNames = {
-      "Вася" : "0660994545"
+      "Тех. Поддержка" : "0660994545"
     };
 
     var regNumbers = {
-      "0660994545" : "Вася"
+      "0660994545" : "Тех. Поддержка"
     };
 
     $scope.addContact = function (pName, pNumber) {
@@ -24,35 +21,39 @@ phoneBookApp.controller("phoneBookController", function ($scope) {
           alert("Номер должен быть числом");
           return;
         }
-        if ( pNumber.length != 10) {
-          alert("номер должен быть 10-ти значным");
-          return;
-        }
-        if (pName in regNames) {
-          alert("Контакт с таким именем уже существует");
-          return;
-        }
+
         if (pNumber in regNumbers) {
-          alert("Этот номер принадлежит контакту: " + regNumbers[pNumber]);
-          return;
+          if ( !confirm("Этот номер принадлежит контакту: " + regNumbers[pNumber] + ", перезаписать?") ) return;
+          delContactBy('number', pNumber);
         }
 
-        $scope.list.items.push({ name: pName, number: pNumber });
+        if (pName in regNames) {
+          if ( !confirm("Вы уверены что хотите изменить номер для: " + pName + "?") ) return;
+          delContactBy('name', pName);
+        }
+
+        $scope.listContacts.push({ name: pName, number: pNumber });
         regNames[pName] = pNumber;
         regNumbers[pNumber] = pName;
     }
 
-    $scope.delContact = function (item) {
-      if ( !confirm("Вы уверены что хотите удалить контакт?") ) return;
-      delete regNames[item.name];
-      delete regNumbers[item.number];
+    $scope.delContact = function (contact) {
+      if ( !confirm("Вы уверены что хотите удалить контакт: " + contact.name + "?") ) return;
+      delContactBy('name', contact.name);
+    }
 
-      for (var i = 0; i < $scope.list.items.length; i++) {
-        if (item != $scope.list.items[i]) continue;
+    $scope.editContact = function (contact) {
+      $scope.pName = contact.name;
+      $scope.pNumber = contact.number;
+    }
 
-        $scope.list.items.splice(i, 1);
-        return;
+    function delContactBy(property, value) {
+      for (var i = 0; i < $scope.listContacts.length; i++) {
+        if ( $scope.listContacts[i][property] != value) continue;
+        delete regNames[$scope.listContacts[i].name];
+        delete regNumbers[$scope.listContacts[i].number];
+        $scope.listContacts.splice(i, 1);
+        break;
       }
-
     }
 });
