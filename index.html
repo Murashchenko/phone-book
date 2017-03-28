@@ -11,13 +11,13 @@
   <script defer src="js/angular.min.js"></script>
   <script defer src="js/script.js"></script>
 </head>
-<body ng-controller="phoneBookController">
+<body id="body" ng-controller="phoneBookController">
   <main class="main">
     <h1 class="header"> Телефонная книга </h1>
     <form class="add-contact">
       <input class="add-contact__item" ng-model="pName" placeholder = "Имя" />
       <input class="add-contact__item" ng-model="pNumber" placeholder="Номер" />
-      <button class="add-contact__btn" type="button" ng-click="addContact(pName, pNumber)">Добавить контакт</button>
+      <button class="add-contact__btn" type="button" ng-click="addContact(pName, pNumber)">Сохранить</button>
     </form>
     <table class="contacts">
       <tr class="contacts__headers">
@@ -25,13 +25,13 @@
         <th>Номер</th>
         <th>Настройки</th>
       </tr>
-      <tr class="contacts__item" ng-repeat="item in list.items">
-        <td>{{item.name}}</td>
-        <td>{{item.number}}</td>
+      <tr class="contacts__item" ng-repeat="contact in listContacts">
+        <td>{{contact.name}}</td>
+        <td>{{contact.number}}</td>
         <td>
           <div class="contacts__btn-wrapper">
-            <button class="contacts__btn _edit" ng-click="editContact(item)">Редактировать</button>
-            <button class="contacts__btn _del" ng-click="delContact(item)">Удалить контакт</button>
+            <a href="#body" class="contacts__btn _edit" ng-click="editContact(contact)">Редактировать</a>
+            <button class="contacts__btn _del" ng-click="delContact(contact)">Удалить контакт</button>
           </div>
         </td>
       </tr>
